@@ -1,4 +1,4 @@
-build: data var/logs var/cache var/sessions vendor
+build: data/repos var/logs var/cache var/sessions vendor
 	#./vendor/squizlabs/php_codesniffer/scripts/phpcs --extensions=php --standard=app/standard/Clean -s src/
 	#./vendor/squizlabs/php_codesniffer/scripts/phpcs --extensions=php --standard=app/standard/Clean -s tests/
 	#./vendor/phpmd/phpmd/src/bin/phpmd src/ text app/standard/phpmd.xml
@@ -9,6 +9,10 @@ build: data var/logs var/cache var/sessions vendor
 vendor: composer.lock
 	composer install
 	touch vendor
+
+data/repos: data
+	mkdir data/repos
+	chmod -R 0777 data/repos
 
 data:
 	mkdir data
