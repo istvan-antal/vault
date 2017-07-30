@@ -3,7 +3,7 @@ build: data var/logs var/cache var/sessions vendor
 	#./vendor/squizlabs/php_codesniffer/scripts/phpcs --extensions=php --standard=app/standard/Clean -s tests/
 	#./vendor/phpmd/phpmd/src/bin/phpmd src/ text app/standard/phpmd.xml
 	#./vendor/phpmd/phpmd/src/bin/phpmd tests/ text app/standard/phpmd.xml
-	#php ./vendor/bin/phpunit -c .
+	php ./vendor/bin/phpunit -c .
 	#php bin/console doctrine:migrations:migrate --no-interaction
 
 vendor: composer.lock
