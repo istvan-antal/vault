@@ -1,18 +1,19 @@
-build: data/repos var/logs var/cache var/sessions vendor
+build: data/store var/logs var/cache var/sessions vendor
 	#./vendor/squizlabs/php_codesniffer/scripts/phpcs --extensions=php --standard=app/standard/Clean -s src/
 	#./vendor/squizlabs/php_codesniffer/scripts/phpcs --extensions=php --standard=app/standard/Clean -s tests/
 	#./vendor/phpmd/phpmd/src/bin/phpmd src/ text app/standard/phpmd.xml
 	#./vendor/phpmd/phpmd/src/bin/phpmd tests/ text app/standard/phpmd.xml
 	php ./vendor/bin/phpunit -c .
-	#php bin/console doctrine:migrations:migrate --no-interaction
+	php bin/console doctrine:migrations:migrate --no-interaction
 
 vendor: composer.lock
 	composer install
 	touch vendor
 
-data/repos: data
-	mkdir data/repos
-	chmod -R 0777 data/repos
+data/store: data
+	mkdir data/store
+	chmod -R 0777 data/store
+	touch data/store
 
 data:
 	mkdir data
