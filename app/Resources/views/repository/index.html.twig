@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Repositories list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Createdat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for repository in repositories %}
+            <tr>
+                <td><a href="{{ path('admin_repositories_show', { 'id': repository.id }) }}">{{ repository.id }}</a></td>
+                <td>{{ repository.name }}</td>
+                <td>{% if repository.createdAt %}{{ repository.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_repositories_show', { 'id': repository.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_repositories_edit', { 'id': repository.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_repositories_new') }}">Create a new repository</a>
+        </li>
+    </ul>
+{% endblock %}
